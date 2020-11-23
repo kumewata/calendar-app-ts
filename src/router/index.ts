@@ -5,6 +5,7 @@ import CalendarComponent from '@/views/Calendar.vue';
 import ProfileComponent from '@/views/Profile.vue';
 import ShareComponent from '@/views/Share.vue';
 import SignInComponent from '@/views/SignIn.vue';
+import NotFoundComponent from '@/views/NotFound.vue';
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,9 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Home',
     component: HomeComponent,
+    meta: {
+      title: 'home',
+    },
   },
   {
     path: '/calendar/:type',
@@ -35,12 +39,24 @@ const routes: Array<RouteConfig> = [
     name: 'sign-in',
     component: SignInComponent,
   },
+  {
+    path: '*',
+    component: NotFoundComponent,
+  },
 ];
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
+});
+
+router.afterEach(to => {
+  if (!to.meta.title) {
+    return;
+  }
+
+  document.title = to.meta.title;
 });
 
 export default router;
