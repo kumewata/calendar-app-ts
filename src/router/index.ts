@@ -21,26 +21,41 @@ const routes: Array<RouteConfig> = [
   {
     path: '/calendar/:type',
     name: 'calendar',
+    meta: {
+      title: 'calendar',
+    },
     component: CalendarComponent,
     props: true,
   },
   {
     path: '/profile',
     name: 'profile',
+    meta: {
+      title: 'profile',
+    },
     component: ProfileComponent,
   },
   {
     path: '/share',
     name: 'share',
+    meta: {
+      title: 'share',
+    },
     component: ShareComponent,
   },
   {
     path: '/sign-in',
     name: 'sign-in',
+    meta: {
+      title: 'sign-in',
+    },
     component: SignInComponent,
   },
   {
     path: '*',
+    meta: {
+      title: 'not found',
+    },
     component: NotFoundComponent,
   },
 ];
