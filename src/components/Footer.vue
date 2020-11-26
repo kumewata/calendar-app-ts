@@ -52,8 +52,14 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { defineComponent, reactive, toRefs } from '@vue/composition-api';
-import { profileMockData } from '@/store/profile';
+import {
+  defineComponent,
+  reactive,
+  toRefs,
+  computed,
+} from '@vue/composition-api';
+// import { profileMockData } from '@/store/profile';
+import { profileStore } from '@/store/profile';
 
 export default defineComponent({
   setup(props, context) {
@@ -70,7 +76,9 @@ export default defineComponent({
           methodName: 'share',
         },
       ],
-      signInUser: profileMockData,
+      signInUser: computed(() => {
+        return profileStore.profile;
+      }),
     });
 
     const handleMethod = (methodName: string) => {
@@ -94,6 +102,7 @@ export default defineComponent({
     };
 
     const signOut = () => {
+      profileStore.profile = null;
       routerPush('/sign-in');
     };
 
