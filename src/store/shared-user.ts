@@ -58,8 +58,18 @@ export const update = (profile: Profile) => {
   targetUser.hasAvatar = profile.hasAvatar;
 };
 
-export const searchUsers = partOfNickname => {
+export const searchUsers = (partOfNickname: string) => {
   return sharedUserStore.sharedUsers.filter(user =>
     user.nickname.startsWith(partOfNickname),
   );
+};
+
+export const getThemeColor = (userId: string) => {
+  const defaultColor = '#f44336';
+  const user = sharedUserStore.sharedUsers.find(user => user.userId === userId);
+  if (!user) {
+    return defaultColor;
+  }
+
+  return user.themeColor;
 };

@@ -44,6 +44,7 @@ import {
   computed,
 } from '@vue/composition-api';
 import { searchUsers } from '@/store/shared-user';
+import { SharedUser } from '@/store/shared-user.model';
 
 export default defineComponent({
   setup() {
@@ -57,7 +58,7 @@ export default defineComponent({
       }),
     });
     // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-empty-function
-    const share = userId => {};
+    const share = (userId: string) => {};
 
     return {
       ...toRefs(state),
